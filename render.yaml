@@ -1,0 +1,30 @@
+services:
+  - type: worker
+    name: movie-agent
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python agent.py
+    autoDeploy: true
+    envVars:
+      - key: FIREBASE_PROJECT_ID
+        value: earn-learn-f98ef
+      - key: FIREBASE_DATABASE_URL
+        value: https://earn-learn-f98ef-default-rtdb.firebaseio.com
+      - key: FIREBASE_SERVICE_ACCOUNT
+        value: /etc/secrets/serviceAccountKey.json
+      - key: GOOGLE_DRIVE_CREDENTIALS
+        value: /etc/secrets/credentials.json
+      - key: GOOGLE_DRIVE_FOLDER_ID
+        sync: false
+      - key: ADMIN_PANEL_URL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: HEADLESS
+        value: "true"
+      - key: LOG_LEVEL
+        value: INFO
